@@ -72,7 +72,9 @@ regional_seas <- function(x,
     st_cast() %>%
     st_sf() %>%
     mutate(id_v = 1:n()) %>%
-    st_join(x) %>%
+    st_join(x,
+          join = st_is_within_distance, 
+          dist=20) %>%
     # group_by(id_v) %>%
     # summarise(across(.cols = everything(), .fns = first)) # Not on {sf}
     # summarise_all(.funs = first) # Not on {sf}
