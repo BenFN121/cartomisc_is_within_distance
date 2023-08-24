@@ -66,7 +66,8 @@ regional_seas <- function(x,
   # Create voronoi polygons around points
   x_vd_region_distinct <- x_points %>%
     st_combine() %>%
-    st_make_valid(st_voronoi(.)) %>%
+    st_voronoi() %>%
+    st_make_valid() %>%
     st_cast() %>%
     st_intersection(x_donut) %>%
     st_cast() %>%
